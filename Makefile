@@ -16,7 +16,7 @@ define Package/wireshark-helper
 	CATEGORY:=Network
 	DEPENDS:=+iptables-mod-tee
 	TITLE:=wireshark-helper Service
-	URL:=https://docs.openwrt.melmac.net/wireshark-helper/
+	URL:=https://github.com/stangri/wireshark-helper/
 	PKGARCH:=all
 endef
 
