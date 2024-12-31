@@ -5,7 +5,7 @@ include $(TOPDIR)/rules.mk
 
 PKG_NAME:=wireshark-helper
 PKG_VERSION:=0.0.1
-PKG_RELEASE:=5
+PKG_RELEASE:=7
 PKG_LICENSE:=AGPL-3.0-or-later
 PKG_MAINTAINER:=Stan Grishin <stangri@melmac.ca>
 
@@ -43,23 +43,23 @@ define Package/wireshark-helper/install
 endef
 
 define Package/wireshark-helper/postinst
-	#!/bin/sh
-	# check if we are on real system
-	if [ -z "$${IPKG_INSTROOT}" ]; then
-		/etc/init.d/wireshark-helper enable
-	fi
-	exit 0
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	/etc/init.d/wireshark-helper enable
+fi
+exit 0
 endef
 
 define Package/wireshark-helper/prerm
-	#!/bin/sh
-	# check if we are on real system
-	if [ -z "$${IPKG_INSTROOT}" ]; then
-		echo "Stopping service and removing rc.d symlink for wireshark-helper"
-		/etc/init.d/wireshark-helper stop || true
-		/etc/init.d/wireshark-helper disable || true
-	fi
-	exit 0
+#!/bin/sh
+# check if we are on real system
+if [ -z "$${IPKG_INSTROOT}" ]; then
+	echo "Stopping service and removing rc.d symlink for wireshark-helper"
+	/etc/init.d/wireshark-helper stop || true
+	/etc/init.d/wireshark-helper disable || true
+fi
+exit 0
 endef
 
 $(eval $(call BuildPackage,wireshark-helper))
